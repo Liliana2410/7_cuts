@@ -1,0 +1,12 @@
+#!/usr/bin/expect -f
+spawn ssh -Y lquintero@hep-server2.uniandes.edu.co "ls; cd SIMULATIONS/Analysis/Build; ls; sed -i 's/tt_zp_tata_noh_l_vl_350/tttata_noh_l_vl_5M/g' input.txt;
+source setup.sh; make; ./MadAnalysis5job input.txt"
+expect "password:"
+send "Liliana2410\r"
+interact
+
+spawn scp -r lquintero@hep-server2.uniandes.edu.co:~/SIMULATIONS/Analysis/Build/resultados.root ./
+expect "password:"
+send "Liliana2410\r"
+interact
+
